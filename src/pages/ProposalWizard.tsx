@@ -1,8 +1,6 @@
-import { Box, Card, CardContent, FormControl, FormLabel, TextField, Button, IconButton, Alert, Typography } from "@mui/material";
+import { Box, Card, CardContent, FormControl, FormLabel, TextField, Button, Alert, Typography } from "@mui/material";
 import { useState, useRef, useEffect } from "react";
-import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import { useNavigate } from "react-router-dom";
-import { logout } from "../utils/auth.ts";
+
 import { getProposalHistoryCount, streamProposal } from "../api/proposalApi.ts";
 
 
@@ -16,7 +14,6 @@ const ProposalWizard = () => {
     const [proposal, setProposal] = useState('');
     const [totalProposals,setTotalProposals] = useState<number>(0);
     const proposalTextRef = useRef<HTMLDivElement | null>(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async() => {
@@ -35,10 +32,7 @@ const ProposalWizard = () => {
         }
     };
 
-    const handleLogout = () => {
-        logout();
-        navigate("/login");
-    }
+    
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -73,25 +67,13 @@ const ProposalWizard = () => {
 
     return (
         <Box>
-            <Card variant="outlined" sx={{ mx: 40, mt: 10 }}>
+            <Card variant="outlined" sx={{ mx: 20, mt: 5 }}>
                 <CardContent>
-                    <Button
-                        variant='contained'
-                        onClick={handleLogout}
-                        sx={{ mb: 2 }}
-                    >
-                        Logout
-                    </Button>
-                    <Button variant='contained'
-                        onClick={() => navigate("/history")}
-                        sx={{ ml: 2, mb: 2 }}>
-                        Proposal History
-                    </Button>
                     {
-                        totalProposals == 2 ?
+                        totalProposals === 5 ?
                         <Typography>Please subscribe.</Typography> :
                         <>
-                        <Typography>Free proposals left: {2 - totalProposals}</Typography>
+                        <Typography>Free proposals left: {5 - totalProposals}</Typography>
                         <Box component="form"
                         onSubmit={handleSubmit}
                         sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
