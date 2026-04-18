@@ -7,6 +7,7 @@ import Proposal from './pages/Proposal.tsx';
 import AppTheme from './AppTheme.tsx';
 import Layout from './components/Layout.tsx';
 import MyProfile from './pages/MyProfile.tsx';
+import Register from './pages/Register.tsx';
 
 const App = () => {
 
@@ -14,6 +15,7 @@ const App = () => {
     <AppTheme>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route
           element={
             <ProtectedRoute>
