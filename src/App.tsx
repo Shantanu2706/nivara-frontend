@@ -8,6 +8,7 @@ import AppTheme from './AppTheme';
 import Layout from './components/Layout';
 import MyProfile from './pages/MyProfile';
 import Register from './pages/Register';
+import PremiumPlans from './pages/PremiumPlans';
 
 const App = () => {
 
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/my-profile" element={<MyProfile />} />
           <Route path="/history" element={<ProposalHistory />} />
           <Route path="/history/:proposalId" element={<Proposal />} />
+          <Route path="/plans" element={<PremiumPlans />} />
         </Route>
       </Routes>
     </AppTheme>

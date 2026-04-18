@@ -32,7 +32,7 @@ const Register = () => {
     }
 
     return (
-        <Card variant="outlined" sx={{ mx: 50, mt: 10 }}>
+        <Card sx={{ mx: 50, mt: 10 }}>
             <CardContent>
                 <Typography variant="h4" sx={{ mb: 2 }}>
                     Register

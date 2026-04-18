@@ -12,16 +12,16 @@ const ProposalWizard = () => {
     const [isGenerating, setIsGenerating] = useState(false);
     const [error, setError] = useState('');
     const [proposal, setProposal] = useState('');
-    const [totalProposals,setTotalProposals] = useState<number>(0);
+    const [totalProposals, setTotalProposals] = useState<number>(0);
     const proposalTextRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        const fetchData = async() => {
+        const fetchData = async () => {
             const data = await getProposalHistoryCount();
             setTotalProposals(data);
         }
         fetchData();
-    },[]);
+    }, []);
 
     const scrollProposalToBottom = () => {
         if (proposalTextRef.current) {
@@ -32,7 +32,7 @@ const ProposalWizard = () => {
         }
     };
 
-    
+
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -57,7 +57,7 @@ const ProposalWizard = () => {
                     },
                 }
             );
-        } catch (err:any) {
+        } catch (err: any) {
             setError(err.response?.data?.message || err.message);
             setProposal('');
         } finally {
@@ -66,89 +66,92 @@ const ProposalWizard = () => {
     }
 
     return (
-        <Box>
-            <Card variant="outlined" sx={{ mx: 20, mt: 5 }}>
+        <Box sx={{ mx: 3 }}>
+            <Typography variant="h5" sx={{ mb: 2 }}>
+                Home
+            </Typography>
+            <Card>
                 <CardContent>
                     {
                         totalProposals === 5 ?
-                        <Typography>Please subscribe.</Typography> :
-                        <>
-                        <Typography>Free proposals left: {5 - totalProposals}</Typography>
-                        <Box component="form"
-                        onSubmit={handleSubmit}
-                        sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                        <FormControl>
-                            <FormLabel htmlFor="jobDescription">Job Description</FormLabel>
-                            <TextField
-                                id="jobDescription"
-                                multiline
-                                minRows={6}
-                                name="jobDescription"
-                                value={jobDescription}
-                                onChange={(e) => setJobDescription(e.target.value)}
-                                fullWidth />
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel htmlFor="skills">Skills</FormLabel>
-                            <TextField
-                                id="skills"
-                                name="skills"
-                                value={skills}
-                                onChange={(e) => setSkills(e.target.value)}
-                                fullWidth />
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel htmlFor="yearsOfExperience">Years of Experience</FormLabel>
-                            <TextField
-                                id="yearsOfExperience"
-                                name="yearsOfExperience"
-                                value={yearsOfExperience}
-                                type='number'
-                                onChange={(e) => setYearsOfExperience(Number(e.target.value))}
-                                fullWidth />
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel htmlFor="relevantPastWork">Relevant Past Work</FormLabel>
-                            <TextField
-                                id="relevantPastWork"
-                                multiline
-                                minRows={3}
-                                name="relevantPastWork"
-                                value={relevantPastWork}
-                                onChange={(e) => setRelevantPastWork(e.target.value)}
-                                fullWidth />
-                        </FormControl>
-                        <Button
-                            fullWidth
-                            variant="contained"
-                            disabled={isGenerating}
-                            type="submit">
-                            Generate Proposal
-                        </Button>
-                        {error ?
-                            <Alert severity="error">{error}</Alert> :
-                            null
-                        }
-                        {
-                            proposal &&
-                            <FormControl>
-                                <FormLabel htmlFor="proposal">Proposal</FormLabel>
-                                <TextField
-                                    id="proposal"
-                                    multiline
-                                    minRows={6}
-                                    name="proposal"
-                                    value={proposal}
-                                    onChange={(e) => setProposal(e.target.value)}
-                                    fullWidth />
-                            </FormControl>
-                        }
+                            <Typography>Please subscribe.</Typography> :
+                            <>
+                                <Typography>Free proposals left: {5 - totalProposals}</Typography>
+                                <Box component="form"
+                                    onSubmit={handleSubmit}
+                                    sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                                    <FormControl>
+                                        <FormLabel htmlFor="jobDescription">Job Description</FormLabel>
+                                        <TextField
+                                            id="jobDescription"
+                                            multiline
+                                            minRows={6}
+                                            name="jobDescription"
+                                            value={jobDescription}
+                                            onChange={(e) => setJobDescription(e.target.value)}
+                                            fullWidth />
+                                    </FormControl>
+                                    <FormControl>
+                                        <FormLabel htmlFor="skills">Skills</FormLabel>
+                                        <TextField
+                                            id="skills"
+                                            name="skills"
+                                            value={skills}
+                                            onChange={(e) => setSkills(e.target.value)}
+                                            fullWidth />
+                                    </FormControl>
+                                    <FormControl>
+                                        <FormLabel htmlFor="yearsOfExperience">Years of Experience</FormLabel>
+                                        <TextField
+                                            id="yearsOfExperience"
+                                            name="yearsOfExperience"
+                                            value={yearsOfExperience}
+                                            type='number'
+                                            onChange={(e) => setYearsOfExperience(Number(e.target.value))}
+                                            fullWidth />
+                                    </FormControl>
+                                    <FormControl>
+                                        <FormLabel htmlFor="relevantPastWork">Relevant Past Work</FormLabel>
+                                        <TextField
+                                            id="relevantPastWork"
+                                            multiline
+                                            minRows={3}
+                                            name="relevantPastWork"
+                                            value={relevantPastWork}
+                                            onChange={(e) => setRelevantPastWork(e.target.value)}
+                                            fullWidth />
+                                    </FormControl>
+                                    <Button
+                                        fullWidth
+                                        variant="contained"
+                                        disabled={isGenerating}
+                                        type="submit">
+                                        Generate Proposal
+                                    </Button>
+                                    {error ?
+                                        <Alert severity="error">{error}</Alert> :
+                                        null
+                                    }
+                                    {
+                                        proposal &&
+                                        <FormControl>
+                                            <FormLabel htmlFor="proposal">Proposal</FormLabel>
+                                            <TextField
+                                                id="proposal"
+                                                multiline
+                                                minRows={6}
+                                                name="proposal"
+                                                value={proposal}
+                                                onChange={(e) => setProposal(e.target.value)}
+                                                fullWidth />
+                                        </FormControl>
+                                    }
 
-                    </Box>
-                        </>
-                        
+                                </Box>
+                            </>
+
                     }
-                    
+
                 </CardContent>
             </Card>
         </Box>

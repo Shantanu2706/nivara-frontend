@@ -2,9 +2,11 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HistoryIcon from '@mui/icons-material/History';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
+import StarIcon from '@mui/icons-material/Star';
 import { logout } from "../utils/auth";
 import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
+import PremiumPlans from '../pages/PremiumPlans';
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -14,6 +16,7 @@ const Sidebar = () => {
         { text: 'Home', icon: <HomeIcon />, path: '/' },
         { text: 'My Profile', icon: <AccountCircleIcon />, path: '/my-profile' },
         { text: 'History', icon: <HistoryIcon />, path: '/history' },
+        { text: 'Premium Plans', icon: <StarIcon />, path: '/plans' },
     ];
 
     const handleLogout = () => {

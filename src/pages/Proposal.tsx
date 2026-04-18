@@ -21,13 +21,13 @@ const Proposal = () => {
     return(
         <Card>
             <CardContent>
-                <Typography>Job Description: {proposalItem.jobDescription}</Typography>
-                <Typography>Skills: {proposalItem.skills}</Typography>
-                <Typography>Years of Experience: {proposalItem.yearsOfExperience}</Typography>
-                <Typography>Relevant Past Work: {proposalItem.relevantPastWork}</Typography>
+                <Typography>Job Description: {proposalItem?.jobDescription}</Typography>
+                <Typography>Skills: {proposalItem?.skills}</Typography>
+                <Typography>Years of Experience: {proposalItem?.yearsOfExperience}</Typography>
+                <Typography>Relevant Past Work: {proposalItem?.relevantPastWork}</Typography>
                 <br/>
-                <Typography>Proposal: {proposalItem.proposal}</Typography>
-                <Typography>Created At: {proposalItem.createdAt}</Typography>
+                <Typography>Proposal: {proposalItem?.proposal}</Typography>
+                <Typography>Created At: {proposalItem?.createdAt}</Typography>
             </CardContent>
         </Card>
     )

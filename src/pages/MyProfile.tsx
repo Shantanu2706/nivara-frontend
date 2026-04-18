@@ -33,7 +33,7 @@ const MyProfile = () => {
       <Typography variant="h5" sx={{ mb: 2 }}>
         My Profile
       </Typography>
-      <Card variant="outlined" >
+      <Card>
         <CardContent>
           <Grid container spacing={2}>
             {
