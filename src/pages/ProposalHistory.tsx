@@ -3,6 +3,7 @@ import { getProposalHistory, } from "../api/proposalApi";
 import type { ProposalHistoryItem } from "../api/proposalApi"
 import { Stack, Card, CardContent, Typography, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { formatDate } from "../utils";
 
 const ProposalHistory = () => {
     const [proposals, setProposals] = useState<ProposalHistoryItem[]>([]);
@@ -27,7 +28,7 @@ const ProposalHistory = () => {
                         <Card key={p.id} sx={{ cursor: "pointer", mb: 2 }} onClick={() => navigate(`${p.id}`)}>
                             <CardContent>
                                 <Typography>{p.jobDescription.slice(0, 120)} ...</Typography>
-                                <Typography>Created At: {p.createdAt}</Typography>
+                                <Typography>Created At: {formatDate(p.createdAt)}</Typography>
                             </CardContent>
                         </Card>
                     ))

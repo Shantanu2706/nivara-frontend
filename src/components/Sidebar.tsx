@@ -3,7 +3,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
 import StarIcon from '@mui/icons-material/Star';
-import { logout } from "../utils/auth";
+import { logout } from "../utils";
 import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PremiumPlans from '../pages/PremiumPlans';
@@ -13,10 +13,10 @@ const Sidebar = () => {
     const location = useLocation();
 
     const mainListItems = [
-        { text: 'Home', icon: <HomeIcon />, path: '/' },
-        { text: 'My Profile', icon: <AccountCircleIcon />, path: '/my-profile' },
+        { text: 'Home', icon: <HomeIcon />, path: '/home' },
+        { text: 'My Profile', icon: <AccountCircleIcon />, path: '/my-profile/' },
         { text: 'History', icon: <HistoryIcon />, path: '/history' },
-        { text: 'Premium Plans', icon: <StarIcon />, path: '/plans' },
+        { text: 'Premium Plans', icon: <StarIcon />, path: '/plans/' },
     ];
 
     const handleLogout = () => {
@@ -39,7 +39,7 @@ const Sidebar = () => {
                 <List dense sx={{flexGrow:1}}>
                     {mainListItems.map((item, index) => (
                         <ListItem key={index} disablePadding sx={{ display: 'block' }}>
-                            <ListItemButton selected={location.pathname === item.path} onClick={() => navigate(item.path)}>
+                            <ListItemButton selected={location.pathname.startsWith(item.path)} onClick={() => navigate(item.path)}>
                                 <ListItemIcon>{item.icon}</ListItemIcon>
                                 <ListItemText primary={item.text} />
                             </ListItemButton>

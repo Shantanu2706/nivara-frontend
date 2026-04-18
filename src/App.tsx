@@ -24,7 +24,7 @@ const App = () => {
             </ProtectedRoute>
           }
         >
-          <Route path="/" element={<ProposalWizard />} />
+          <Route path="/home" element={<ProposalWizard />} />
           <Route path="/my-profile" element={<MyProfile />} />
           <Route path="/history" element={<ProposalHistory />} />
           <Route path="/history/:proposalId" element={<Proposal />} />

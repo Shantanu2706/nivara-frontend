@@ -2,10 +2,12 @@ import { Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react'
 import { ProfileResponse } from '../types';
 import { getProfile } from '../api/userApi';
+import { formatValue } from '../utils';
 
 type ListItemType = {
   text: string;
-  variableName: keyof ProfileResponse; // 🔥 important
+  variableName: keyof ProfileResponse;
+  type: string
 };
 
 const MyProfile = () => {
@@ -20,11 +22,11 @@ const MyProfile = () => {
   }, []);
 
   const listItems: ListItemType[] = [
-    { text: 'Name', variableName: 'name' },
-    { text: 'Email', variableName: 'email' },
-    { text: 'Email verified?', variableName: 'verified' },
-    { text: 'Tier', variableName: 'tier' },
-    { text: 'Profile Created Date', variableName: 'createdAt' },
+    { text: 'Name', variableName: 'name', type: 'text' },
+    { text: 'Email', variableName: 'email', type: 'text' },
+    { text: 'Email verified?', variableName: 'verified', type: 'boolean' },
+    { text: 'Tier', variableName: 'tier', type: 'text' },
+    { text: 'Profile Created Date', variableName: 'createdAt', type: 'date' },
 
   ];
 
@@ -40,7 +42,7 @@ const MyProfile = () => {
               listItems.map(li => (
                 <Grid size={6}>
                   <Typography>{li.text}</Typography>
-                  <Typography>{String(profile?.[li.variableName])}</Typography>
+                  <Typography>{formatValue(profile?.[li.variableName],li.type)}</Typography>
                 </Grid>
               )
               )

@@ -20,7 +20,7 @@ export interface ProposalHistoryDetail {
   yearsOfExperience: number;
   relevantPastWork: string;
   proposal: string;
-  createdAt?: string;
+  createdAt: string;
 }
 
 interface StreamProposalOptions {

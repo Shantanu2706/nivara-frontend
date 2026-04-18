@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@emotion/react";
-import { createTheme } from "@mui/material";
+import { createTheme, CssBaseline } from "@mui/material";
 
 interface AppThemeProps {
     children: React.ReactNode
@@ -17,12 +17,16 @@ const AppTheme = (props: AppThemeProps) => {
                     }
                 },
             },
-        }
+        },
+        typography: {
+            fontFamily: '"Inter", sans-serif',
+        },
     });
 
 
     return (
         <ThemeProvider theme={theme}>
+            <CssBaseline/>
             {children}
         </ThemeProvider>
     )

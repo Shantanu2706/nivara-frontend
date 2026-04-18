@@ -1,6 +1,6 @@
 // src/routes/ProtectedRoute.jsx
 import { Navigate } from "react-router-dom";
-import {isTokenValid} from '../utils/auth'
+import {isTokenValid} from '../utils'
 import type { ReactNode } from "react";
 
 interface Props {

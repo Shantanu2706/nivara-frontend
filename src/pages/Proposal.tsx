@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProposalHistoryById,ProposalHistoryDetail } from "../api/proposalApi";
 import { Card, CardContent, Typography } from "@mui/material";
+import { formatDate } from "../utils";
 
 const Proposal = () => {
     const {proposalId} = useParams<string>();
@@ -27,7 +28,8 @@ const Proposal = () => {
                 <Typography>Relevant Past Work: {proposalItem?.relevantPastWork}</Typography>
                 <br/>
                 <Typography>Proposal: {proposalItem?.proposal}</Typography>
-                <Typography>Created At: {proposalItem?.createdAt}</Typography>
+                <br/>
+                <Typography>Created At: {formatDate(proposalItem?.createdAt)}</Typography>
             </CardContent>
         </Card>
     )
