@@ -12,3 +12,11 @@ export interface RegisterRequest {
   email: string;
   password: string;
 }
+
+export interface ProfileResponse {
+  name: string;
+  email: string;
+  tier: string;
+  verified: boolean;
+  createdAt: string;
+}

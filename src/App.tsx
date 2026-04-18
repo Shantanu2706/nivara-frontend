@@ -1,13 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
-import Login from './pages/Login.tsx';
-import ProtectedRoute from './routes/ProtectedRoute.tsx';
-import ProposalWizard from './pages/ProposalWizard.tsx';
-import ProposalHistory from './pages/ProposalHistory.tsx';
-import Proposal from './pages/Proposal.tsx';
-import AppTheme from './AppTheme.tsx';
-import Layout from './components/Layout.tsx';
-import MyProfile from './pages/MyProfile.tsx';
-import Register from './pages/Register.tsx';
+import Login from './pages/Login';
+import ProtectedRoute from './routes/ProtectedRoute';
+import ProposalWizard from './pages/ProposalWizard';
+import ProposalHistory from './pages/ProposalHistory';
+import Proposal from './pages/Proposal';
+import AppTheme from './AppTheme';
+import Layout from './components/Layout';
+import MyProfile from './pages/MyProfile';
+import Register from './pages/Register';
 
 const App = () => {
 

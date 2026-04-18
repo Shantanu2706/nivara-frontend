@@ -1,6 +1,6 @@
 import { Box, Card, TextField, CardContent, Button, FormControl, FormLabel, Alert, Typography, Link } from "@mui/material"
-import { FormEvent, SubmitEventHandler, useState } from "react"
-import { login } from "../api/authApi.ts";
+import { useState } from "react"
+import { login } from "../api/authApi";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {

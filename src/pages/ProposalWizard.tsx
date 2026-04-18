@@ -1,7 +1,7 @@
 import { Box, Card, CardContent, FormControl, FormLabel, TextField, Button, Alert, Typography } from "@mui/material";
 import { useState, useRef, useEffect } from "react";
 
-import { getProposalHistoryCount, streamProposal } from "../api/proposalApi.ts";
+import { getProposalHistoryCount, streamProposal } from "../api/proposalApi";
 
 
 const ProposalWizard = () => {

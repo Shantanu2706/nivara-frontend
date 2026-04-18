@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProposalHistoryById,ProposalHistoryDetail,ProposalHistoryItem } from "../api/proposalApi.ts";
+import { getProposalHistoryById,ProposalHistoryDetail } from "../api/proposalApi";
 import { Card, CardContent, Typography } from "@mui/material";
 
 const Proposal = () => {
     const {proposalId} = useParams<string>();
-    const [proposalItem,setProposalItem] = useState<ProposalHistoryDetail>({});
+    const [proposalItem,setProposalItem] = useState<ProposalHistoryDetail>();
 
     useEffect(() => {
         const fetchData = async() => {
