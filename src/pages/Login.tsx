@@ -1,4 +1,4 @@
-import { Box, Card, TextField, CardContent, Button, FormControl, FormLabel, Alert } from "@mui/material"
+import { Box, Card, TextField, CardContent, Button, FormControl, FormLabel, Alert, Typography, Link } from "@mui/material"
 import { FormEvent, SubmitEventHandler, useState } from "react"
 import { login } from "../api/authApi.ts";
 import { useNavigate } from "react-router-dom";
@@ -26,51 +26,58 @@ const Login = () => {
     }
 
     return (
-        <Box>
-            <Card variant="outlined" sx={{ mx: 40, mt: 10 }}>
-                <CardContent>
-                    <Box
-                        component="form"
-                        onSubmit={handleSubmit}
-                        sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                        <FormControl>
-                            <FormLabel htmlFor="email">Email</FormLabel>
-                            <TextField
-                                id="email"
-                                type="email"
-                                name="email"
-                                placeholder="your@email.com"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                fullWidth />
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel htmlFor="password">Password</FormLabel>
-                            <TextField
-                                id="password"
-                                type="password"
-                                name="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="••••••"
-                                fullWidth />
-                        </FormControl>
-                        {error ?
-                            <Alert severity="error">{error}</Alert> :
-                            null
-                        }
+        <Card variant="outlined" sx={{ mx: 50, mt: 10 }}>
+            <CardContent>
+                <Typography variant="h4" sx={{ mb: 2 }}>
+                    Login
+                </Typography>
+                <Box
+                    component="form"
+                    onSubmit={handleSubmit}
+                    sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                    <FormControl>
+                        <FormLabel htmlFor="email">Email</FormLabel>
+                        <TextField
+                            id="email"
+                            type="email"
+                            name="email"
+                            placeholder="your@email.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            fullWidth />
+                    </FormControl>
+                    <FormControl>
+                        <FormLabel htmlFor="password">Password</FormLabel>
+                        <TextField
+                            id="password"
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="••••••"
+                            fullWidth />
+                    </FormControl>
+                    {error ?
+                        <Alert severity="error">{error}</Alert> :
+                        null
+                    }
 
-                        <Button
-                            fullWidth
-                            variant="contained"
-                            disabled={loading}
-                            type="submit">
-                            Sign In
-                        </Button>
-                    </Box>
-                </CardContent>
-            </Card>
-        </Box>
+                    <Button
+                        fullWidth
+                        variant="contained"
+                        disabled={loading}
+                        type="submit">
+                        Sign In
+                    </Button>
+                    <Typography sx={{ textAlign: 'center' }}>
+                        Don't have an account?{' '}
+                        <Link href="/register">
+                            Register
+                        </Link>
+                    </Typography>
+                </Box>
+            </CardContent>
+        </Card>
     )
 }
 
