@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidebar from './Sidebar.tsx';
+import Sidebar from './Sidebar';
 import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { getProposalHistory, ProposalHistoryItem } from "../api/proposalApi.ts";
+import { getProposalHistory,  } from "../api/proposalApi";
+import type {ProposalHistoryItem} from "../api/proposalApi"
 import { Stack, Card, CardContent } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 

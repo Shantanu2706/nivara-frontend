@@ -1,7 +1,7 @@
 import { Alert, Box, Button, Card, CardContent, FormControl, FormLabel, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { register } from "../api/authApi.ts";
+import { register } from "../api/authApi";
 
 const Register = () => {
     const [name, setName] = useState('');
