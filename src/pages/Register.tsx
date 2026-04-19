@@ -46,6 +46,7 @@ const Register = () => {
                         <TextField
                             id="name"
                             name="name"
+                            size="small"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             placeholder="Rohit Sharma"
@@ -57,6 +58,7 @@ const Register = () => {
                             id="email"
                             type="email"
                             name="email"
+                            size="small"
                             placeholder="rohit@email.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -68,6 +70,7 @@ const Register = () => {
                             id="password"
                             type="password"
                             name="password"
+                            size="small"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="••••••"
@@ -79,6 +82,7 @@ const Register = () => {
                             id="confirmPassword"
                             type="password"
                             name="confirmPassword"
+                            size="small"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             placeholder="••••••"

@@ -3,7 +3,7 @@ import React from 'react'
 
 const PremiumPlans = () => {
     return (
-        <Box sx={{ mx: 3 }}>
+        <Box sx={{ mx: 3,my:2  }}>
             <Typography variant="h5" sx={{ mb: 2 }}>
                 Premium Plans
             </Typography>

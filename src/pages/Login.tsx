@@ -41,6 +41,7 @@ const Login = () => {
                             id="email"
                             type="email"
                             name="email"
+                            size="small"
                             placeholder="your@email.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -52,6 +53,7 @@ const Login = () => {
                             id="password"
                             type="password"
                             name="password"
+                            size="small"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="••••••"

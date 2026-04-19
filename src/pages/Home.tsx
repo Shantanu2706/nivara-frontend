@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { getProposalHistoryCount, streamProposal } from "../api/proposalApi";
 
 
-const ProposalWizard = () => {
+const Home = () => {
     const [jobDescription, setJobDescription] = useState('');
     const [skills, setSkills] = useState('');
     const [yearsOfExperience, setYearsOfExperience] = useState(0);
@@ -15,11 +15,13 @@ const ProposalWizard = () => {
     const [totalProposals, setTotalProposals] = useState<number>(0);
     const proposalTextRef = useRef<HTMLDivElement | null>(null);
 
+    const fetchData = async () => {
+        const data = await getProposalHistoryCount();
+        setTotalProposals(data);
+    }
+
     useEffect(() => {
-        const fetchData = async () => {
-            const data = await getProposalHistoryCount();
-            setTotalProposals(data);
-        }
+
         fetchData();
     }, []);
 
@@ -62,11 +64,12 @@ const ProposalWizard = () => {
             setProposal('');
         } finally {
             setIsGenerating(false);
+            fetchData();
         }
     }
 
     return (
-        <Box sx={{ mx: 3 }}>
+        <Box sx={{ mx: 3, my: 2 }}>
             <Typography variant="h5" sx={{ mb: 2 }}>
                 Home
             </Typography>
@@ -74,9 +77,9 @@ const ProposalWizard = () => {
                 <CardContent>
                     {
                         totalProposals === 5 ?
-                            <Typography>Please subscribe.</Typography> :
+                            <Typography  sx={{mb:1}}>Please subscribe.</Typography> :
                             <>
-                                <Typography>Free proposals left: {5 - totalProposals}</Typography>
+                                <Typography sx={{mb:1}}>Free proposals left: {5 - totalProposals}</Typography>
                                 <Box component="form"
                                     onSubmit={handleSubmit}
                                     sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -85,6 +88,7 @@ const ProposalWizard = () => {
                                         <TextField
                                             id="jobDescription"
                                             multiline
+                                            size="small"
                                             minRows={6}
                                             name="jobDescription"
                                             value={jobDescription}
@@ -96,6 +100,7 @@ const ProposalWizard = () => {
                                         <TextField
                                             id="skills"
                                             name="skills"
+                                            size="small"
                                             value={skills}
                                             onChange={(e) => setSkills(e.target.value)}
                                             fullWidth />
@@ -105,6 +110,7 @@ const ProposalWizard = () => {
                                         <TextField
                                             id="yearsOfExperience"
                                             name="yearsOfExperience"
+                                            size="small"
                                             value={yearsOfExperience}
                                             type='number'
                                             onChange={(e) => setYearsOfExperience(Number(e.target.value))}
@@ -116,6 +122,7 @@ const ProposalWizard = () => {
                                             id="relevantPastWork"
                                             multiline
                                             minRows={3}
+                                            size="small"
                                             name="relevantPastWork"
                                             value={relevantPastWork}
                                             onChange={(e) => setRelevantPastWork(e.target.value)}
@@ -126,7 +133,7 @@ const ProposalWizard = () => {
                                         variant="contained"
                                         disabled={isGenerating}
                                         type="submit">
-                                        Generate Proposal
+                                        {isGenerating ? 'Thinking...' : 'Generate Proposal'}
                                     </Button>
                                     {error ?
                                         <Alert severity="error">{error}</Alert> :
@@ -140,6 +147,7 @@ const ProposalWizard = () => {
                                                 id="proposal"
                                                 multiline
                                                 minRows={6}
+                                                size="small"
                                                 name="proposal"
                                                 value={proposal}
                                                 onChange={(e) => setProposal(e.target.value)}
@@ -159,4 +167,4 @@ const ProposalWizard = () => {
 
 }
 
-export default ProposalWizard;
+export default Home;

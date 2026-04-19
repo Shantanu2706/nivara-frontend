@@ -31,7 +31,7 @@ const MyProfile = () => {
   ];
 
   return (
-    <Box sx={{ mx: 3 }}>
+    <Box sx={{ mx: 3,my:2  }}>
       <Typography variant="h5" sx={{ mb: 2 }}>
         My Profile
       </Typography>
