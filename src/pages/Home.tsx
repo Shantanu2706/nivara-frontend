@@ -16,8 +16,12 @@ const Home = () => {
     const proposalTextRef = useRef<HTMLDivElement | null>(null);
 
     const fetchData = async () => {
-        const data = await getProposalHistoryCount();
+        try{
+            const data = await getProposalHistoryCount();
         setTotalProposals(data);
+        }catch(err:any){
+            setError(err.response?.data?.message || err.message);
+        }
     }
 
     useEffect(() => {

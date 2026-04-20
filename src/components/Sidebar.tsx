@@ -7,10 +7,15 @@ import { logout } from "../utils";
 import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PremiumPlans from '../pages/PremiumPlans';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import { useContext, useState } from 'react';
+import { ColorModeContext } from '../context';
 
 const Sidebar = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const { toggleTheme, mode } = useContext(ColorModeContext);
 
     const mainListItems = [
         { text: 'Home', icon: <HomeIcon />, path: '/home' },
@@ -36,7 +41,7 @@ const Sidebar = () => {
                     flexDirection: 'column',
                 }}
             >
-                <List dense sx={{flexGrow:1}}>
+                <List dense sx={{ flexGrow: 1 }}>
                     {mainListItems.map((item, index) => (
                         <ListItem key={index} disablePadding sx={{ display: 'block' }}>
                             <ListItemButton selected={location.pathname.startsWith(item.path)} onClick={() => navigate(item.path)}>
@@ -46,11 +51,15 @@ const Sidebar = () => {
                         </ListItem>
                     ))}
                 </List>
-                <Divider/>
+                <Divider />
                 <List dense>
                     <ListItem disablePadding sx={{ display: 'block' }}>
+                        <ListItemButton onClick={toggleTheme}>
+                            <ListItemIcon>{mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}</ListItemIcon>
+                            <ListItemText primary="Theme" />
+                        </ListItemButton>
                         <ListItemButton onClick={handleLogout}>
-                            <ListItemIcon><LogoutIcon /></ListItemIcon>
+                            <ListItemIcon><LogoutIcon/></ListItemIcon>
                             <ListItemText primary="Logout" />
                         </ListItemButton>
                     </ListItem>

@@ -1,5 +1,8 @@
 import { ThemeProvider } from "@emotion/react";
 import { createTheme, CssBaseline, useColorScheme } from "@mui/material";
+import { getTheme } from "./theme";
+import { useMemo, useState } from "react";
+import { ColorModeContext } from "./context";
 
 interface AppThemeProps {
     children: React.ReactNode
@@ -7,65 +10,25 @@ interface AppThemeProps {
 
 const AppTheme = (props: AppThemeProps) => {
     const { children } = props;
-
-
-    const theme = createTheme({
-        palette: {
-            background: {
-                default: 'rgb(250,250,250)',
-            }
-        },
-        components: {
-            MuiListItemIcon: {
-                styleOverrides: {
-                    root: {
-                        minWidth: '2rem',
-                    }
-                },
-            },
-            MuiListItemButton: {
-                styleOverrides: {
-                    root: {
-                        borderRadius: '0.75rem',
-                        marginLeft: '0.5rem',
-                        marginRight: '0.5rem'
-                    }
-                },
-            },
-            MuiButton: {
-                styleOverrides: {
-                    root: {
-                        borderRadius: '0.75rem',
-                    }
-                },
-            },
-            MuiOutlinedInput: {
-                styleOverrides: {
-                    root: {
-                        marginTop: '0.25rem',
-                        borderRadius: '0.75rem',
-                    }
-                },
-            },
-            MuiCard: {
-                styleOverrides: {
-                    root: {
-                        borderRadius: '0.75rem',
-                    }
-                },
-            },
-        },
-        typography: {
-            fontFamily: '"Inter", sans-serif',
-        },
-    });
-
+    const [mode, setMode] = useState<'light' | 'dark'>((localStorage.getItem("theme") as "light" | "dark") || "light");
+    const theme = useMemo(() => getTheme(mode), [mode]);
+    
+    const toggleTheme = () => {
+        setMode((prev) => {
+            const next = prev === "light" ? "dark" : "light";
+            localStorage.setItem("theme", next);
+            return next;
+        });
+    }
 
     return (
+        <ColorModeContext.Provider value={{toggleTheme,mode}}>
         <ThemeProvider theme={theme}>
             <CssBaseline />
             {children}
         </ThemeProvider>
+        </ColorModeContext.Provider>
+        
     )
 }
 
