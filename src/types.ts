@@ -20,3 +20,7 @@ export interface ProfileResponse {
   verified: boolean;
   createdAt: string;
 }
+
+export interface GetCreditsResponse{
+  balance: number;
+}

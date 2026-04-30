@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Card, CardContent, FormControl, FormLabel, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, Card, CardContent, FormControl, FormLabel, TextField, Typography,Link } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../api/authApi";
@@ -23,7 +23,7 @@ const Register = () => {
             }
             const data = await register({ email, password, name });
             localStorage.setItem("token", data.token);
-            navigate("/");
+            navigate("/home");
         } catch (err: any) {
             setError(err.response?.data?.message || err.message);
         } finally {
@@ -32,7 +32,7 @@ const Register = () => {
     }
 
     return (
-        <Card variant="outlined" sx={{ mx: 50, mt: 10 }}>
+        <Card sx={{ mx: 50, mt: 10 }}>
             <CardContent>
                 <Typography variant="h4" sx={{ mb: 2 }}>
                     Register
@@ -46,6 +46,7 @@ const Register = () => {
                         <TextField
                             id="name"
                             name="name"
+                            size="small"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             placeholder="Rohit Sharma"
@@ -57,6 +58,7 @@ const Register = () => {
                             id="email"
                             type="email"
                             name="email"
+                            size="small"
                             placeholder="rohit@email.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -68,6 +70,7 @@ const Register = () => {
                             id="password"
                             type="password"
                             name="password"
+                            size="small"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="••••••"
@@ -79,6 +82,7 @@ const Register = () => {
                             id="confirmPassword"
                             type="password"
                             name="confirmPassword"
+                            size="small"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             placeholder="••••••"
@@ -96,6 +100,12 @@ const Register = () => {
                     >
                         Register
                     </Button>
+                    <Typography sx={{ textAlign: 'center' }}>
+                        Already have an account?{' '}
+                        <Link href="/login">
+                            Login
+                        </Link>
+                    </Typography>
                 </Box>
             </CardContent>
         </Card>

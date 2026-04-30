@@ -2,6 +2,8 @@ import { Box, Card, TextField, CardContent, Button, FormControl, FormLabel, Aler
 import { useState } from "react"
 import { login } from "../api/authApi";
 import { useNavigate } from "react-router-dom";
+import { isTokenValid } from "../utils";
+import EmailIcon from '@mui/icons-material/Email';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -17,7 +19,7 @@ const Login = () => {
         try {
             const data = await login({ email, password });
             localStorage.setItem("token", data.token);
-            navigate("/");
+            navigate("/home");
         } catch (err: any) {
             setError(err.response?.data?.message || err.message);
         } finally {
@@ -25,13 +27,24 @@ const Login = () => {
         }
     }
 
+    const handleGoogleLogin = () => {
+    // Redirect to backend OAuth endpoint
+    if(!isTokenValid()){
+        window.location.href = "http://localhost:8080/oauth2/authorization/google";
+    }
+    
+  };
+
     return (
-        <Card variant="outlined" sx={{ mx: 50, mt: 10 }}>
+        <Card sx={{ mx: 50, mt: 10 }}>
             <CardContent>
                 <Typography variant="h4" sx={{ mb: 2 }}>
-                    Login
+                    Proposal Writer
                 </Typography>
-                <Box
+                <Button onClick={handleGoogleLogin} variant="contained" startIcon={<EmailIcon/>}>
+                    Sign in with Google
+                </Button>
+                {/* <Box
                     component="form"
                     onSubmit={handleSubmit}
                     sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -41,6 +54,7 @@ const Login = () => {
                             id="email"
                             type="email"
                             name="email"
+                            size="small"
                             placeholder="your@email.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -52,6 +66,7 @@ const Login = () => {
                             id="password"
                             type="password"
                             name="password"
+                            size="small"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="••••••"
@@ -75,7 +90,7 @@ const Login = () => {
                             Register
                         </Link>
                     </Typography>
-                </Box>
+                </Box> */}
             </CardContent>
         </Card>
     )
