@@ -11,6 +11,8 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { useContext, useState } from 'react';
 import { ColorModeContext } from '../context';
+import PaidIcon from '@mui/icons-material/Paid';
+import FeedbackIcon from '@mui/icons-material/Feedback';
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -21,7 +23,9 @@ const Sidebar = () => {
         { text: 'Home', icon: <HomeIcon />, path: '/home' },
         { text: 'My Profile', icon: <AccountCircleIcon />, path: '/my-profile/' },
         { text: 'History', icon: <HistoryIcon />, path: '/history' },
-        { text: 'Premium Plans', icon: <StarIcon />, path: '/plans/' },
+        { text: 'Transactions', icon: <PaidIcon />, path: '/transactions' },
+        {text: 'Feedback', icon: <FeedbackIcon />, path: '/feedback' },
+        // { text: 'Premium Plans', icon: <StarIcon />, path: '/plans/' },
     ];
 
     const handleLogout = () => {
@@ -56,7 +60,7 @@ const Sidebar = () => {
                     <ListItem disablePadding sx={{ display: 'block' }}>
                         <ListItemButton onClick={toggleTheme}>
                             <ListItemIcon>{mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}</ListItemIcon>
-                            <ListItemText primary="Theme" />
+                            <ListItemText primary={mode === "light" ? 'Dark Mode' : 'Light Mode'} />
                         </ListItemButton>
                         <ListItemButton onClick={handleLogout}>
                             <ListItemIcon><LogoutIcon/></ListItemIcon>

@@ -2,6 +2,8 @@ import { Box, Card, TextField, CardContent, Button, FormControl, FormLabel, Aler
 import { useState } from "react"
 import { login } from "../api/authApi";
 import { useNavigate } from "react-router-dom";
+import { isTokenValid } from "../utils";
+import EmailIcon from '@mui/icons-material/Email';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -25,13 +27,24 @@ const Login = () => {
         }
     }
 
+    const handleGoogleLogin = () => {
+    // Redirect to backend OAuth endpoint
+    if(!isTokenValid()){
+        window.location.href = "http://localhost:8080/oauth2/authorization/google";
+    }
+    
+  };
+
     return (
         <Card sx={{ mx: 50, mt: 10 }}>
             <CardContent>
                 <Typography variant="h4" sx={{ mb: 2 }}>
-                    Login
+                    Proposal Writer
                 </Typography>
-                <Box
+                <Button onClick={handleGoogleLogin} variant="contained" startIcon={<EmailIcon/>}>
+                    Sign in with Google
+                </Button>
+                {/* <Box
                     component="form"
                     onSubmit={handleSubmit}
                     sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -77,7 +90,7 @@ const Login = () => {
                             Register
                         </Link>
                     </Typography>
-                </Box>
+                </Box> */}
             </CardContent>
         </Card>
     )

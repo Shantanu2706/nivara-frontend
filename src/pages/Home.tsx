@@ -1,7 +1,8 @@
 import { Box, Card, CardContent, FormControl, FormLabel, TextField, Button, Alert, Typography } from "@mui/material";
 import { useState, useRef, useEffect } from "react";
 
-import { getProposalHistoryCount, streamProposal } from "../api/proposalApi";
+import { streamProposal } from "../api/proposalApi";
+import { getCreditsBalance } from "../api/creditsApi";
 
 
 const Home = () => {
@@ -12,13 +13,13 @@ const Home = () => {
     const [isGenerating, setIsGenerating] = useState(false);
     const [error, setError] = useState('');
     const [proposal, setProposal] = useState('');
-    const [totalProposals, setTotalProposals] = useState<number>(0);
+    const [credits, setCredits] = useState<number>(0);
     const proposalTextRef = useRef<HTMLDivElement | null>(null);
 
     const fetchData = async () => {
         try{
-            const data = await getProposalHistoryCount();
-        setTotalProposals(data);
+            const data = await getCreditsBalance();
+        setCredits(data.balance);
         }catch(err:any){
             setError(err.response?.data?.message || err.message);
         }
@@ -80,10 +81,10 @@ const Home = () => {
             <Card>
                 <CardContent>
                     {
-                        totalProposals === 5 ?
-                            <Typography  sx={{mb:1}}>Please subscribe.</Typography> :
+                        credits === 0 ?
+                            <Typography  sx={{mb:1}}>Out of credits? Get 10 more for ₹49. Contact: shantanupimprikar27@gmail.com</Typography> :
                             <>
-                                <Typography sx={{mb:1}}>Free proposals left: {5 - totalProposals}</Typography>
+                                <Typography sx={{mb:1}}>Free proposals left: {credits}</Typography>
                                 <Box component="form"
                                     onSubmit={handleSubmit}
                                     sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>

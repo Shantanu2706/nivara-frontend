@@ -11,6 +11,9 @@ import Register from './pages/Register';
 import PremiumPlans from './pages/PremiumPlans';
 import { useColorScheme } from '@mui/material';
 import { useEffect } from 'react';
+import OAuthSuccess from './pages/OAuthSuccess';
+import Transactions from './pages/Transactions';
+import Feedback from './pages/Feedback';
 
 const App = () => {
   const { mode, setMode } = useColorScheme();
@@ -24,6 +27,7 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/oauth-success" element={<OAuthSuccess />} />
         <Route
           element={
             <ProtectedRoute>
@@ -37,6 +41,8 @@ const App = () => {
           <Route path="/history" element={<ProposalHistory />} />
           <Route path="/history/:proposalId" element={<Proposal />} />
           <Route path="/plans" element={<PremiumPlans />} />
+          <Route path="/transactions" element={<Transactions />} />
+          <Route path="/feedback" element={<Feedback />} />
         </Route>
       </Routes>
     </AppTheme>

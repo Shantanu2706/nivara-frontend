@@ -96,10 +96,7 @@ export const getProposalHistory = async (): Promise<ProposalHistoryItem[]> => {
     .filter((item: ProposalHistoryItem) => item.id);
 };
 
-export const getProposalHistoryCount = async (): Promise<number> => {
-  const response = await apiClient.get(`/proposals/my`);
-  return response.data.length;
-};
+
 
 export const getProposalHistoryById = async (id: string): Promise<ProposalHistoryDetail> => {
   const response = await apiClient.get(`/proposals/${id}`);
