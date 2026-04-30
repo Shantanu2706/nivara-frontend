@@ -1,6 +1,7 @@
 import { Box, Card, CardContent, FormControl, FormLabel, TextField, Button, Alert, Typography } from "@mui/material";
 import { useState, useRef, useEffect } from "react";
 
+
 import { streamProposal } from "../api/proposalApi";
 import { getCreditsBalance } from "../api/creditsApi";
 
@@ -26,7 +27,6 @@ const Home = () => {
     }
 
     useEffect(() => {
-
         fetchData();
     }, []);
 

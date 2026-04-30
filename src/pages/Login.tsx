@@ -30,7 +30,7 @@ const Login = () => {
     const handleGoogleLogin = () => {
     // Redirect to backend OAuth endpoint
     if(!isTokenValid()){
-        window.location.href = "http://localhost:8080/oauth2/authorization/google";
+        window.location.href = process.env.REACT_APP_BACKEND_URL + "/oauth2/authorization/google";
     }
     
   };
