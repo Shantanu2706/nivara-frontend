@@ -36,7 +36,7 @@ const Login = () => {
     };
 
     return (
-        <Card sx={{ mx: { xs: '10%', sm: '20%' }, mt: 10 }}>
+        <Card sx={{ mx: { xs: '5%', sm: '20%' }, mt: 10 }}>
             <CardContent>
                 <Typography variant="h3" sx={{ mb: 2, fontWeight: 'bold' }}>
                     Proposal<span style={{color: 'orange'}}>Wala</span>
