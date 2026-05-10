@@ -40,7 +40,6 @@ const Home = () => {
     };
 
 
-
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         setIsGenerating(true);
@@ -136,6 +135,7 @@ const Home = () => {
                                     <Button
                                         fullWidth
                                         variant="contained"
+                                        color='warning'
                                         disabled={isGenerating}
                                         type="submit">
                                         {isGenerating ? 'Thinking...' : 'Generate Proposal'}

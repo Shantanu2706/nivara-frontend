@@ -38,7 +38,7 @@ const ProposalHistory = () => {
                         <Card key={p.id} sx={{ cursor: "pointer", mb: 2 }} onClick={() => navigate(`${p.id}`)}>
                             <CardContent>
                                 <Typography>Proposal ID: {p.id}</Typography>
-                                <Typography>{p.jobDescription.slice(0, 120)} ...</Typography>
+                                <Typography variant="subtitle1">{p.jobDescription.slice(0, 120)} ...</Typography>
                                 <Typography>Created At: {formatDate(p.createdAt)}</Typography>
                             </CardContent>
                         </Card>

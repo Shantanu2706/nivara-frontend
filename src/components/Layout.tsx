@@ -1,13 +1,13 @@
 import React from 'react'
-import Sidebar from './Sidebar';
 import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
+import Navbar from './Navbar';
 
 const Layout = () => {
   return (
     <Box sx={{ display: "flex" }}>
-      <Sidebar />
-      <Box sx={{ flex: 1, pl: '250px' }}>
+      <Box sx={{ flex: 1 }}>
+        <Navbar/>
         <Outlet /> 
       </Box>
     </Box>

@@ -36,18 +36,18 @@ const Login = () => {
     };
 
     return (
-        <Card sx={{ mx: '20%', mt: 10 }}>
+        <Card sx={{ mx: { xs: '10%', sm: '20%' }, mt: 10 }}>
             <CardContent>
                 <Typography variant="h4" sx={{ mb: 2 }}>
                     ProposalWala
                 </Typography>
-                <Typography variant="subtitle1" sx={{ mb: 3 }}>
+                <Typography variant="subtitle1" sx={{ mb: 3, fontSize: { xs: '0.875rem', sm: '1rem' } }}>
                     You're skilled. You know you can do the job. But your proposal gets ignored — while less experienced freelancers from other countries win the project.
                     The difference isn't skill. It's how they communicate.
                     ProposalWala reads the job description and writes a sharp, professional proposal tailored to that exact client — in the tone international clients respond to. No templates. No generic openers. Just a ready-to-send proposal in under 30 seconds.
                     Built specifically for Indian freelancers.
                 </Typography>
-                <Button onClick={handleGoogleLogin} variant="contained" startIcon={<EmailIcon />}>
+                <Button onClick={handleGoogleLogin} variant="contained" startIcon={<EmailIcon />} color='warning'>
                     Sign in with Google
                 </Button>
                 {/* <Box

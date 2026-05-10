@@ -45,6 +45,7 @@ const Feedback = () => {
                         <Button
                             fullWidth
                             variant="contained"
+                            color='warning'
                             disabled={status === 'SENDING'}
                             type="submit">
                             {status === 'SENDING' ? 'Sending...' : 'Send Feedback'}

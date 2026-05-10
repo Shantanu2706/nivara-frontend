@@ -39,8 +39,8 @@ const Proposal = () => {
             <br />
             <Typography>Relevant Past Work: {proposalItem?.relevantPastWork}</Typography>
             <br />
-            <Typography>Proposal: {proposalItem?.proposal}</Typography>
-            <br />
+            {/* <Typography>Proposal: {proposalItem?.proposal}</Typography>
+            <br /> */}
             <Typography>Created At: {formatDate(proposalItem?.createdAt)}</Typography>
         </Box>
     )

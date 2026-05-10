@@ -36,7 +36,7 @@ const Transactions = () => {
                         <Card key={t.id} sx={{ mb: 2 }}>
                             <CardContent>
                                 <Grid container>
-                                    <Grid size={11}>
+                                    <Grid size={{ xs: 10,md:11 }}>
                                         <Typography>{t.reason}</Typography>
                                         <Typography variant='subtitle2'>{t.type === 'ADD' ? 'Transaction ID:' : 'Proposal ID:'} {t.referenceId || 'NA'}</Typography>
                                         <Typography variant='subtitle2'>Created At: {formatDate(t.createdAt)}</Typography>

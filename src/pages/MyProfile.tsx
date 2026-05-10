@@ -49,7 +49,7 @@ const MyProfile = () => {
           <Grid container spacing={2}>
             {
               listItems.map(li => (
-                <Grid size={6}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                   <Typography>{li.text}</Typography>
                   <Typography>{formatValue(profile?.[li.variableName], li.type)}</Typography>
                 </Grid>

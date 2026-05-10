@@ -29,6 +29,7 @@ export const getTheme = (mode: "light" | "dark") =>
                 styleOverrides: {
                     root: {
                         borderRadius: '0.75rem',
+                        textTransform: 'none',
                     }
                 },
             },
