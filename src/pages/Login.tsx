@@ -38,8 +38,8 @@ const Login = () => {
     return (
         <Card sx={{ mx: { xs: '10%', sm: '20%' }, mt: 10 }}>
             <CardContent>
-                <Typography variant="h4" sx={{ mb: 2 }}>
-                    ProposalWala
+                <Typography variant="h3" sx={{ mb: 2, fontWeight: 'bold' }}>
+                    Proposal<span style={{color: 'orange'}}>Wala</span>
                 </Typography>
                 <Typography variant="subtitle1" sx={{ mb: 3, fontSize: { xs: '0.875rem', sm: '1rem' } }}>
                     You're skilled. You know you can do the job. But your proposal gets ignored — while less experienced freelancers from other countries win the project.
