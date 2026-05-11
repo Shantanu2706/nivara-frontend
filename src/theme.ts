@@ -48,6 +48,12 @@ export const getTheme = (mode: "light" | "dark") =>
                     }
                 },
             },
+            MuiAlert: {
+                styleOverrides: {
+                    root: {
+                        borderRadius: '0.75rem',                    }
+                },
+            },
         },
         typography: {
             fontFamily: '"Inter", sans-serif',

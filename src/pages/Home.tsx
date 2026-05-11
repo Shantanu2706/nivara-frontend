@@ -8,13 +8,11 @@ import { getCreditsBalance } from "../api/creditsApi";
 
 const Home = () => {
     const [jobDescription, setJobDescription] = useState('');
-    const [skills, setSkills] = useState('');
-    const [yearsOfExperience, setYearsOfExperience] = useState(0);
     const [relevantPastWork, setRelevantPastWork] = useState('');
     const [isGenerating, setIsGenerating] = useState(false);
     const [error, setError] = useState('');
     const [proposal, setProposal] = useState('');
-    const [credits, setCredits] = useState<number>(0);
+    const [credits, setCredits] = useState<number>(null);
     const proposalTextRef = useRef<HTMLDivElement | null>(null);
 
     const fetchData = async () => {
@@ -49,8 +47,6 @@ const Home = () => {
             await streamProposal(
                 {
                     jobDescription,
-                    skills,
-                    yearsOfExperience,
                     relevantPastWork,
                 },
                 {
@@ -84,6 +80,7 @@ const Home = () => {
                             <Typography  sx={{mb:1}}>Out of credits? Get 10 more for ₹49. Contact: shantanupimprikar27@gmail.com</Typography> :
                             <>
                                 <Typography sx={{mb:1}}>Free proposals left: {credits}</Typography>
+                                
                                 <Box component="form"
                                     onSubmit={handleSubmit}
                                     sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -100,27 +97,6 @@ const Home = () => {
                                             fullWidth />
                                     </FormControl>
                                     <FormControl>
-                                        <FormLabel htmlFor="skills">Skills</FormLabel>
-                                        <TextField
-                                            id="skills"
-                                            name="skills"
-                                            size="small"
-                                            value={skills}
-                                            onChange={(e) => setSkills(e.target.value)}
-                                            fullWidth />
-                                    </FormControl>
-                                    <FormControl>
-                                        <FormLabel htmlFor="yearsOfExperience">Years of Experience</FormLabel>
-                                        <TextField
-                                            id="yearsOfExperience"
-                                            name="yearsOfExperience"
-                                            size="small"
-                                            value={yearsOfExperience}
-                                            type='number'
-                                            onChange={(e) => setYearsOfExperience(Number(e.target.value))}
-                                            fullWidth />
-                                    </FormControl>
-                                    <FormControl>
                                         <FormLabel htmlFor="relevantPastWork">Relevant Past Work</FormLabel>
                                         <TextField
                                             id="relevantPastWork"
@@ -132,6 +108,9 @@ const Home = () => {
                                             onChange={(e) => setRelevantPastWork(e.target.value)}
                                             fullWidth />
                                     </FormControl>
+                                    <Alert severity="info" sx={{mb:0}}>
+                                    Keep skills and YOE updated in your profile for better proposals. Go to My Profile &gt; Update.
+                                </Alert>
                                     <Button
                                         fullWidth
                                         variant="contained"

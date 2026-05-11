@@ -2,8 +2,6 @@ import { apiClient } from './apiClient';
 
 export interface ProposalPayload {
   jobDescription: string;
-  skills: string;
-  yearsOfExperience: number;
   relevantPastWork: string;
 }
 
@@ -16,8 +14,6 @@ export interface ProposalHistoryItem {
 export interface ProposalHistoryDetail {
   id: number;
   jobDescription: string;
-  skills: string;
-  yearsOfExperience: number;
   relevantPastWork: string;
   proposal: string;
   createdAt: string;
@@ -81,8 +77,6 @@ const normalizeHistoryItem = (item: any): ProposalHistoryItem => ({
 const normalizeHistoryDetail = (item: any): ProposalHistoryDetail => ({
   id: item?.id,
   jobDescription: item?.jobDescription,
-  skills: item?.skills,
-  yearsOfExperience: item?.yearsOfExperience,
   relevantPastWork: item?.relevantPastWork,
   proposal: item?.proposal,
   createdAt: item?.createdAt, 
@@ -95,8 +89,6 @@ export const getProposalHistory = async (): Promise<ProposalHistoryItem[]> => {
     .map(normalizeHistoryItem)
     .filter((item: ProposalHistoryItem) => item.id);
 };
-
-
 
 export const getProposalHistoryById = async (id: string): Promise<ProposalHistoryDetail> => {
   const response = await apiClient.get(`/proposals/${id}`);

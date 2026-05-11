@@ -13,12 +13,19 @@ export interface RegisterRequest {
   password: string;
 }
 
+export interface UpdateProfileRequest {
+  skills: string;
+  yearsOfExperience: number;
+}
+
 export interface ProfileResponse {
   name: string;
   email: string;
   tier: string;
-  verified: boolean;
   createdAt: string;
+  updatedAt: string;
+  skills: string;
+  yearsOfExperience: number;
 }
 
 export interface GetCreditsResponse{

@@ -33,14 +33,10 @@ const Proposal = () => {
             }
             <Typography>Job Description: {proposalItem?.jobDescription}</Typography>
             <br />
-            <Typography>Skills: {proposalItem?.skills}</Typography>
-            <br />
-            <Typography>Years of Experience: {proposalItem?.yearsOfExperience}</Typography>
-            <br />
             <Typography>Relevant Past Work: {proposalItem?.relevantPastWork}</Typography>
             <br />
-            {/* <Typography>Proposal: {proposalItem?.proposal}</Typography>
-            <br /> */}
+            <Typography>Proposal: {proposalItem?.proposal}</Typography>
+            <br />
             <Typography>Created At: {formatDate(proposalItem?.createdAt)}</Typography>
         </Box>
     )
