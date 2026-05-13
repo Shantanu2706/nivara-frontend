@@ -118,7 +118,8 @@ const MyProfile = () => {
                     id="skills"
                     name="skills"
                     size="small"
-                    value={skills || profile?.skills}
+                    defaultValue={profile?.skills}
+                    value={skills}
                     onChange={(e) => { setSkills(e.target.value) }}
                     fullWidth />
                 </FormControl>
@@ -130,7 +131,8 @@ const MyProfile = () => {
                     id="yearsOfExperience"
                     name="yearsOfExperience"
                     size="small"
-                    value={yearsOfExperience || profile?.yearsOfExperience}
+                    defaultValue={profile?.yearsOfExperience}
+                    value={yearsOfExperience}
                     type='number'
                     onChange={(e) => { setYearsOfExperience(Number(e.target.value)) }}
                     fullWidth />
