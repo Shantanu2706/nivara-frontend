@@ -76,10 +76,12 @@ const Home = () => {
             <Card>
                 <CardContent>
                     {
-                        credits === 0 ?
-                            <Typography  sx={{mb:1}}>Out of credits? Get 10 more for ₹49. Contact: shantanupimprikar27@gmail.com</Typography> :
                             <>
-                                <Typography sx={{mb:1}}>Free proposals left: {credits}</Typography>
+                                
+                                {credits === 0 ? 
+                                <Alert severity="warning" sx={{mb:1}}>You have used all your free proposals. Get 10 more for ₹49. Contact: shantanupimprikar27@gmail.com</Alert> :
+                                <Alert severity="info" sx={{mb:1}}>Free proposals left: {credits}</Alert>}
+                                
                                 
                                 <Box component="form"
                                     onSubmit={handleSubmit}
@@ -115,7 +117,7 @@ const Home = () => {
                                         fullWidth
                                         variant="contained"
                                         color='warning'
-                                        disabled={isGenerating}
+                                        disabled={isGenerating || credits === 0}
                                         type="submit">
                                         {isGenerating ? 'Thinking...' : 'Generate Proposal'}
                                     </Button>
