@@ -54,6 +54,7 @@ export const getTheme = (mode: "light" | "dark") =>
                         borderRadius: '0.75rem',                    }
                 },
             },
+
         },
         typography: {
             fontFamily: '"Inter", sans-serif',

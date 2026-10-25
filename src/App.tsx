@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
-import ProtectedRoute from './routes/ProtectedRoute';
-import ProposalWizard from './pages/Home';
+import Home from './pages/Home';
 import ProposalHistory from './pages/ProposalHistory';
 import Proposal from './pages/Proposal';
 import AppTheme from './AppTheme';
@@ -25,25 +24,7 @@ const App = () => {
   return (
     <AppTheme>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/oauth-success" element={<OAuthSuccess />} />
-        <Route
-          element={
-            <ProtectedRoute>
-              <Layout />
-            </ProtectedRoute>
-          }
-        >
-          <Route path="/" element={<Navigate to="/home" replace />} />
-          <Route path="/home" element={<ProposalWizard />} />
-          <Route path="/my-profile" element={<MyProfile />} />
-          <Route path="/history" element={<ProposalHistory />} />
-          <Route path="/history/:proposalId" element={<Proposal />} />
-          <Route path="/plans" element={<PremiumPlans />} />
-          <Route path="/transactions" element={<Transactions />} />
-          <Route path="/feedback" element={<Feedback />} />
-        </Route>
+          <Route path="/" element={<Home />} />
       </Routes>
     </AppTheme>
 

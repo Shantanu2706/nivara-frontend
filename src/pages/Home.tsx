@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, FormControl, FormLabel, TextField, Button, Alert, Typography } from "@mui/material";
+import { Box, Card, CardContent, FormControl, Grid, FormLabel, TextField, Button, Alert, Typography, ToggleButtonGroup, ToggleButton, InputLabel, Select, MenuItem, Slider, InputAdornment, OutlinedInput } from "@mui/material";
 import { useState, useRef, useEffect } from "react";
 
 
@@ -7,19 +7,24 @@ import { getCreditsBalance } from "../api/creditsApi";
 
 
 const Home = () => {
-    const [jobDescription, setJobDescription] = useState('');
+    const [transaction, setTransaction] = useState('rent');
     const [relevantPastWork, setRelevantPastWork] = useState('');
     const [isGenerating, setIsGenerating] = useState(false);
     const [error, setError] = useState('');
     const [proposal, setProposal] = useState('');
     const [credits, setCredits] = useState<number>(null);
     const proposalTextRef = useRef<HTMLDivElement | null>(null);
+    const [value, setValue] = useState<number[]>([2000, 3700]);
+
+    const handleChange = (event: Event, newValue: number[]) => {
+        setValue(newValue);
+    };
 
     const fetchData = async () => {
-        try{
+        try {
             const data = await getCreditsBalance();
-        setCredits(data.balance);
-        }catch(err:any){
+            setCredits(data.balance);
+        } catch (err: any) {
             setError(err.response?.data?.message || err.message);
         }
     }
@@ -44,21 +49,21 @@ const Home = () => {
         setError('');
         setProposal('');
         try {
-            await streamProposal(
-                {
-                    jobDescription,
-                    relevantPastWork,
-                },
-                {
-                    onChunk: (chunk) => {
-                        setProposal((prev: string) => {
-                            const updated = prev + chunk;
-                            requestAnimationFrame(() => scrollProposalToBottom());
-                            return updated;
-                        });
-                    },
-                }
-            );
+            // await streamProposal(
+            //     {
+            //         // transaction,
+            //         relevantPastWork,
+            //     },
+            //     {
+            //         onChunk: (chunk) => {
+            //             setProposal((prev: string) => {
+            //                 const updated = prev + chunk;
+            //                 requestAnimationFrame(() => scrollProposalToBottom());
+            //                 return updated;
+            //             });
+            //         },
+            //     }
+            // );
         } catch (err: any) {
             setError(err.response?.data?.message || err.message);
             setProposal('');
@@ -70,81 +75,119 @@ const Home = () => {
 
     return (
         <Box sx={{ mx: 3, my: 2 }}>
-            <Typography variant="h5" sx={{ mb: 2 }}>
-                Home
+            <Typography variant="h3" sx={{ mb: 2, fontWeight: 'bold' }}>
+                Find your next home with someone who has done this for 13 years.
             </Typography>
             <Card>
                 <CardContent>
-                    {
-                            <>
-                                
-                                {credits === 0 ? 
-                                <Alert severity="warning" sx={{mb:1}}>You have used all your free proposals. Get 10 more for ₹49. Contact: shantanupimprikar27@gmail.com</Alert> :
-                                <Alert severity="info" sx={{mb:1}}>Free proposals left: {credits}</Alert>}
-                                
-                                
-                                <Box component="form"
-                                    onSubmit={handleSubmit}
-                                    sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                                    <FormControl>
-                                        <FormLabel htmlFor="jobDescription">Job Description</FormLabel>
-                                        <TextField
-                                            id="jobDescription"
-                                            multiline
-                                            size="small"
-                                            minRows={6}
-                                            name="jobDescription"
-                                            value={jobDescription}
-                                            onChange={(e) => setJobDescription(e.target.value)}
-                                            fullWidth />
-                                    </FormControl>
-                                    <FormControl>
-                                        <FormLabel htmlFor="relevantPastWork">Relevant Past Work</FormLabel>
-                                        <TextField
-                                            id="relevantPastWork"
-                                            multiline
-                                            minRows={3}
-                                            size="small"
-                                            name="relevantPastWork"
-                                            value={relevantPastWork}
-                                            onChange={(e) => setRelevantPastWork(e.target.value)}
-                                            fullWidth />
-                                    </FormControl>
-                                    <Alert severity="info" sx={{mb:0}}>
-                                    Keep skills and YOE updated in your profile for better proposals. Go to My Profile &gt; Update.
-                                </Alert>
-                                    <Button
-                                        fullWidth
-                                        variant="contained"
-                                        color='warning'
-                                        disabled={isGenerating || credits === 0}
-                                        type="submit">
-                                        {isGenerating ? 'Thinking...' : 'Generate Proposal'}
-                                    </Button>
-                                    {error ?
-                                        <Alert severity="error">{error}</Alert> :
-                                        null
-                                    }
-                                    {
-                                        proposal &&
-                                        <FormControl>
-                                            <FormLabel htmlFor="proposal">Proposal</FormLabel>
-                                            <TextField
-                                                id="proposal"
-                                                multiline
-                                                minRows={6}
+                    <>
+                        <Grid container component="form"
+                            onSubmit={handleSubmit}
+                            gap={2}
+                        >
+                            <Grid size={{ xs: 6, md:2, lg: 1.5 }}>
+                                <ToggleButtonGroup
+                                    value={transaction}
+                                    size="large"
+                                    onChange={(e, newValue) => setTransaction(newValue)}
+                                    exclusive
+                                >
+                                    <ToggleButton value="buy">
+                                        Buy
+                                    </ToggleButton>
+                                    <ToggleButton value="rent">
+                                        Rent
+                                    </ToggleButton>
+                                </ToggleButtonGroup>
+                            </Grid>
+                            <Grid size={{ xs: 12, md: 3, lg: 2 }}>
+                                <FormControl fullWidth>
+                                    <FormLabel htmlFor="location">Location</FormLabel>
+                                    <Select
+                                        id="location"
+                                        // value={age}
+                                        size="small"
+                                    // onChange={handleChange}
+                                    >
+                                        <MenuItem value={10}>Pimple Saudagar</MenuItem>
+                                        <MenuItem value={20}>Rahatani</MenuItem>
+                                        <MenuItem value={30}>Baner</MenuItem>
+                                        <MenuItem value={40}>Aundh</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+                            <Grid size={{ xs: 12, md: 3, lg: 2 }}>
+                                <FormControl fullWidth>
+                                    <FormLabel htmlFor="property-type">Property Type</FormLabel>
+                                    <Select
+                                        id="property-type"
+                                        // value={age}
+                                        label="Property Type"
+                                        size="small"
+                                    // onChange={handleChange}
+                                    >
+                                        <MenuItem value={10}>1 BHK</MenuItem>
+                                        <MenuItem value={20}>2 BHK</MenuItem>
+                                        <MenuItem value={30}>3 BHK</MenuItem>
+                                        <MenuItem value={40}>4 BHK</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+                            <Grid container size={{ xs: 12, md:8,lg: 4 }} gap={2}>
+                                    <Grid size={{ xs: 12, md: 5.5 }}>
+                                        <FormControl fullWidth>
+                                            <FormLabel htmlFor="minBudget">Minimum Budget</FormLabel>
+                                            <Select
+                                                id="minBudget"
+                                                // value={age}
+                                                label="Minimum Budget"
                                                 size="small"
-                                                name="proposal"
-                                                value={proposal}
-                                                onChange={(e) => setProposal(e.target.value)}
-                                                fullWidth />
+                                            // onChange={handleChange}
+                                            >
+                                                <MenuItem value={10}>20,000</MenuItem>
+                                                <MenuItem value={20}>30,000</MenuItem>
+                                                <MenuItem value={30}>40,000</MenuItem>
+                                                <MenuItem value={40}>50,000</MenuItem>
+                                            </Select>
                                         </FormControl>
-                                    }
+                                    </Grid>
+                                    <Grid size={{ xs: 12, md: 5.5 }}>
+                                        <FormControl fullWidth>
+                                            <FormLabel htmlFor="maxBudget">Maximum Budget</FormLabel>
+                                            <Select
+                                                id="maxBudget"
+                                                // value={age}
+                                                label="Maximum Budget"
+                                                size="small"
+                                            // onChange={handleChange}
+                                            >
+                                                <MenuItem value={10}>20,000</MenuItem>
+                                                <MenuItem value={20}>30,000</MenuItem>
+                                                <MenuItem value={30}>40,000</MenuItem>
+                                                <MenuItem value={40}>50,000</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
+                            </Grid>
+                            <Grid size={{ xs: 12, md:3,lg: 1 }}>
+                                <FormLabel htmlFor="search">&nbsp;</FormLabel>
+                                <Button
+                                id="search"
+                                    fullWidth
+                                    variant="contained"
+                                    color='warning'
+                                    disabled={isGenerating || credits === 0}
+                                    type="submit">
+                                    Search
+                                </Button>
+                            </Grid>
 
-                                </Box>
-                            </>
 
-                    }
+
+
+                        </Grid>
+                    </>
+
 
                 </CardContent>
             </Card>
